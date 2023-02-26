@@ -1,0 +1,290 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+    body {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+        font-weight:300;
+        font-size:18px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1100px;
+    }
+    
+    h1 {
+        font-size:32px;
+        font-weight:300;
+    }
+    
+    .disclaimerbox {
+        background-color: #eee;     
+        border: 1px solid #eeeeee;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+        padding: 20px;
+    }
+
+    video.header-vid {
+        height: 140px;
+        border: 1px solid black;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+    }
+    
+    img.header-img {
+        height: 140px;
+        border: 1px solid black;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+    }
+    
+    img.rounded {
+        border: 1px solid #eeeeee;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+    }
+    
+    a:link,a:visited
+    {
+        color: #1367a7;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #208799;
+    }
+    
+    td.dl-link {
+        height: 160px;
+        text-align: center;
+        font-size: 22px;
+    }
+    
+    .layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+        box-shadow:
+        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+        5px 5px 0 0px #fff, /* The second layer */
+        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+        10px 10px 0 0px #fff, /* The third layer */
+        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+        15px 15px 0 0px #fff, /* The fourth layer */
+        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+        20px 20px 0 0px #fff, /* The fifth layer */
+        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+        25px 25px 0 0px #fff, /* The fifth layer */
+        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+        margin-left: 10px;
+        margin-right: 45px;
+    }
+
+    .paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+        box-shadow:
+        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+        margin-left: 10px;
+        margin-right: 45px;
+    }
+
+
+    .layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+        box-shadow:
+        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+        5px 5px 0 0px #fff, /* The second layer */
+        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+        10px 10px 0 0px #fff, /* The third layer */
+        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-right: 30px;
+        margin-bottom: 5px;
+    }
+    
+    .vert-cent {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    hr
+    {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+</style>
+
+<html>
+<head>
+    <title>Modulating Pretrained Diffusion Models for Multimodal Image Synthesis</title>
+    <meta property="og:image" content=".resource/teaser_v2.jpg"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+    <meta property="og:title" content="Modulating Pretrained Diffusion Models for Multimodal Image Synthesis" />
+    <meta property="og:description" content="Modulating Pretrained Diffusion Models for Multimodal Image Synthesis" />
+
+    <!-- Get from Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src=""></script> 
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-75863369-6');
+    </script>
+</head>
+
+<body>
+    <br>
+    <center>
+        <span style="font-size:36px">Modulating Pretrained Diffusion Models for Multimodal Image Synthesis</span>
+    </center>
+
+    <br>
+
+    <table align=center width=850px>
+        <tr>
+            <td align=center>
+                tl;dr We use a small modulation network to enable multimodal image synthesis using pretrained diffusion models without any updates to the diffusion model parameters.
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <center>
+        <table align=center width=850px>
+            <tr>
+                <td width=850px>
+                    <center>
+                        <img class="round" style="width:800px" src="./resources/teaser_v2.jpg"/>
+                        <br>
+                        <p>Results of using MCM to condition Stable Diffusion on new modalities (underlined).</p>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <hr>
+
+    <table align=center width=850px>
+        <center><h1>Abstract</h1></center>
+        <tr>
+            <td>
+                We present multimodal conditioning modules (MCM) for enabling conditional image synthesis using pretrained diffusion models. Previous multimodal synthesis works rely on training networks from scratch or fine-tuning pretrained networks, both of which are computationally expensive for large, state-of-the-art diffusion models. Our method uses pretrained networks but <i>does not require any updates to the diffusion network’s parameters</i>. MCM is a small module trained to modulate the diffusion network’s predictions during sampling using 2D modalities (e.g., semantic segmentation maps, sketches) that were unseen during the original training of the diffusion model. We show that MCM enables user control over the spatial layout of the image and leads to increased control over the image generation process. Training MCM is cheap as it does not require gradients from the original diffusion net, consists of only ∼1% of the number of parameters of the base diffusion model, and is trained using only a limited number of training examples. We evaluate our method on unconditional and text-conditional models to demonstrate the improved control over the generated images and their alignment with respect to the conditioning inputs.
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <hr>
+    <br>
+
+    <table align=center width=420px>
+        <center><h1>Approach</h1></center>
+    </table>
+    <table align=center width=500px>
+        <tr>
+            <td align=center width=500px>
+                <center>
+                    <td><img class="round" style="width:500px" src="./resources/pipeline.jpg"/></td>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <table align=center width=850px>
+        <center>
+            <tr>
+                <td>
+                    Given a small paired dataset of images and new target modalities, we train a small network that modulates the output of the diffusion model to generate images consistent with the provided conditions. At each timestep, we take the current image and get its predicted noise map from a frozen pretrained diffusion model. We concatenate both the image and predicted noise with the corresponding target modalities as input to MCM, which predicts a set of parameters used to modulate the predicted noise. The modulated noise is then used to compute the image for the next timestep.
+                </td>
+            </tr>
+        </center>
+    </table>
+    <br>
+    <hr>
+
+    <center><h1>Results</h1></center>
+
+    <table align=center width=420px>
+        <center>
+            <tr>
+                <td>
+                </td>
+            </tr>
+        </center>
+    </table>
+    <table align=center width=800px>
+        <tr>
+            <td align=center width=800px>
+                <center>
+                    <td><img class="round" style="width:800px" src="./resources/sd_styles.jpg"/></td>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <table align=center width=850px>
+        <center>
+            <tr>
+                <td>
+                    We experiment with varying the artistic style of the images generated by applying MCM to Stable Diffusion. The text prompts are directly fed as input to SD, while segmentation maps and/or sketches are input to MCM.
+                </td>
+            </tr>
+        </center>
+    </table>
+    <br>
+
+    <table align=center width=800px>
+        <tr>
+            <td align=center width=800px>
+                <center>
+                    <td><img class="round" style="width:800px" src="./resources/celeba_diversity.jpg"/></td>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <table align=center width=850px>
+        <center>
+            <tr>
+                <td>
+                    We apply MCM to an unconditional LDM trained on CelebA and produce diverse results for any subset of modalities.
+                </td>
+            </tr>
+        </center>
+    </table>
+    <br>
+
+    <table align=center width=800px>
+        <tr>
+            <td align=center width=800px>
+                <center>
+                    <td><img class="round" style="width:800px" src="./resources/mountains_diversity.jpg"/></td>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <table align=center width=850px>
+        <center>
+            <tr>
+                <td>
+                    Visualization of the diversity in results for MCM applied to an unconditional LDM trained on Flickr Mountains.
+                </td>
+            </tr>
+        </center>
+    </table>
+    <br>
+
+    <hr>
+    <br>
+
+    <center>
+    <p style="font-size: 12px">
+        This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
+    </p>
+    </center>
+<br>
+</body>
+</html>
+
